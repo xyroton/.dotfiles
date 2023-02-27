@@ -7,6 +7,7 @@ if status is-interactive
 	alias llat='exa -a --tree'
 	alias v='nvim'
 	alias py='python'
+	alias audio="pactl info | grep 'Server Name'"
 	alias redr='redshift -l 55.7:12.6 -t 2000:2000 &'
 	alias redgtk='redshift-gtk -l 55.7:12.6 -t 2000:2000 &'
 

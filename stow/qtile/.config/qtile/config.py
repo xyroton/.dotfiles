@@ -29,13 +29,20 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+#-----------------------------------------------------------------------------------
 #custom imports
 import os
 import subprocess
 from libqtile import hook
 
+#-----------------------------------------------------------------------------------
+
 mod = "mod4"
 terminal = guess_terminal()
+
+myLauncher = "rofi -show run"
+myFileBrowser = "thunar"
+myBrowser = "firefox"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -72,13 +79,29 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    #Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+# My changes
+    Key([mod], "r", 
+		lazy.spawn(myLauncher), 
+		desc="Launches Rofi"),
+
+    Key([mod], "e", 
+		lazy.spawn(myFileBrowser), 
+		desc="Launches Thunar"),
+
+    Key([mod], "b", 
+		lazy.spawn(myBrowser), 
+		desc="Launches Firefox"),
+
+    #Key([], "XF86AudioRaiseVolume", lazy.spwan("pactl -- set-sink-volume 0 +10%"), desc="Increase Vol."),
+    #Key([], "XF86AudioRaiseVolume", lazy.spwan("pactl -- set-sink-volume 0 -10%"), desc="Decrease Vol."),
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in "123456"]
 
 for i in groups:
     keys.extend(
@@ -105,8 +128,21 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
+    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"],
+	 border_width=2,
+	 border_focus = "#df8e1d",
+	 border_normal = "#7287fd",
+	 margin = 3,
+	 border_on_single = True,
+	 ),
+    layout.Max(	 
+	 border_width=2,
+	 border_focus = "#df8e1d",
+	 border_normal = "#7287fd",
+	 margin = 3,
+	 border_on_single = True,
+	),
+
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -129,25 +165,43 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.GroupBox(
+					background = "#bf616a",
+				),
                 widget.Prompt(),
-                widget.WindowName(),
+                widget.WindowName(
+					background = "#2e3440",
+				),
                 widget.Chord(
                     chords_colors={
                         "launch": ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                #widget.TextBox("default config", name="default"),
+                #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
+				widget.Memory(
+					background = "#7287fd",
+				),
+				widget.Spacer(
+					length = 2,
+				),
+                widget.Systray(
+					background = "#a3be8c",
+					),
+				widget.Spacer(
+					length = 2,
+				),
+                #widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+				widget.Clock(
+					background = "#b48ead",
+					format="%Y-%m-%d %a %I:%M %p"),
+				widget.CurrentLayoutIcon(),
+                #widget.QuickExit(),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
@@ -185,13 +239,19 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 
 
-
+#--------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------
 # My changes
+#--------------------------------------------------------------------------------------
 # Autostart
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.Popen([home])
+
+
+#--------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------
 
 
 # If things like steam games want to auto-minimize themselves when losing
