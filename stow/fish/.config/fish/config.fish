@@ -10,5 +10,6 @@ if status is-interactive
 	alias audio="pactl info | grep 'Server Name'"
 	alias redr='redshift -l 55.7:12.6 -t 2000:2000 &'
 	alias redgtk='redshift-gtk -l 55.7:12.6 -t 2000:2000 &'
+	alias dot='cd ~/.dotfiles/'
 
 end
