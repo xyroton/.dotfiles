@@ -129,16 +129,16 @@ for i in groups:
 
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"],
-	 border_width=2,
-	 border_focus = "#df8e1d",
-	 border_normal = "#7287fd",
+	 border_width_focus=2,
+	 border_focus = "#8caaee", # "#df8e1d" ← Orange "#8caaee" ← blue
+	 border_normal = "#5c5f77", #"#5c5f77" ← dark grey "#7287fd" ←leight grey
 	 margin = 3,
 	 border_on_single = True,
 	 ),
     layout.Max(	 
 	 border_width=2,
-	 border_focus = "#df8e1d",
-	 border_normal = "#7287fd",
+	 border_focus = "#8caaee",
+	 border_normal = "#8caaee",
 	 margin = 3,
 	 border_on_single = True,
 	),
@@ -168,11 +168,16 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
+					highlight_color = ["#8839ef","#8839ef"],
 					background = "#bf616a",
+					inactive = "#bf616a",
+					highlight_method = 'line',
+					disable_drag = True,
 				),
                 widget.Prompt(),
                 widget.WindowName(
 					background = "#2e3440",
+					foreground = "#b4befe",
 				),
                 widget.Chord(
                     chords_colors={
