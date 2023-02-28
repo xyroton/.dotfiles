@@ -1,2 +1,1 @@
 require("xyroton")
-print("Hello")
