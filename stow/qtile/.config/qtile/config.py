@@ -34,7 +34,8 @@ from libqtile.utils import guess_terminal
 import os
 import subprocess
 from libqtile import hook
-
+from colors import catppuccin_frappe as c_frappe
+from unicodes import left_half_circle, right_arrow, left_arrow, right_half_circle
 #-----------------------------------------------------------------------------------
 
 mod = "mod4"
@@ -43,6 +44,15 @@ terminal = guess_terminal()
 myLauncher = "rofi -show run"
 myFileBrowser = "thunar"
 myBrowser = "firefox"
+
+#  _  __          _     _           _ _                 
+# | |/ /         | |   (_)         | (_)                
+# | ' / ___ _   _| |__  _ _ __   __| |_ _ __   __ _ ___ 
+# |  < / _ \ | | | '_ \| | '_ \ / _` | | '_ \ / _` / __|
+# | . \  __/ |_| | |_) | | | | | (_| | | | | | (_| \__ \
+# |_|\_\___|\__, |_.__/|_|_| |_|\__,_|_|_| |_|\__, |___/
+#            __/ |                             __/ |    
+#           |___/                             |___/     
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -101,7 +111,28 @@ keys = [
     #Key([], "XF86AudioRaiseVolume", lazy.spwan("pactl -- set-sink-volume 0 -10%"), desc="Decrease Vol."),
 ]
 
-groups = [Group(i) for i in "123456"]
+
+#   _____                           
+#  / ____|                          
+# | |  __ _ __ ___  _   _ _ __  ___ 
+# | | |_ | '__/ _ \| | | | '_ \/ __|
+# | |__| | | | (_) | |_| | |_) \__ \
+#  \_____|_|  \___/ \__,_| .__/|___/
+#                        | |        
+#                        |_|
+
+#groups = [Group(i) for i in "123456"]
+
+groups = [
+        Group("1", label="一"),
+        Group("2", label="二"),
+        Group("3", label="三"),
+        Group("4", label="四"),
+        Group("5", label="五"),
+        Group("6", label="六"),
+        Group("7", label="七"),
+        ]
+
 
 for i in groups:
     keys.extend(
@@ -126,6 +157,15 @@ for i in groups:
             #     desc="move focused window to group {}".format(i.name)),
         ]
     )
+
+#  _                             _       
+# | |                           | |      
+# | |     __ _ _   _  ___  _   _| |_ ___ 
+# | |    / _` | | | |/ _ \| | | | __/ __|
+# | |___| (_| | |_| | (_) | |_| | |_\__ \
+# |______\__,_|\__, |\___/ \__,_|\__|___/
+#               __/ |                    
+#              |___/
 
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"],
@@ -156,6 +196,17 @@ layouts = [
     # layout.Zoomy(),
 ]
 
+
+
+# __          ___     _            _       
+# \ \        / (_)   | |          | |      
+#  \ \  /\  / / _  __| | __ _  ___| |_ ___ 
+#   \ \/  \/ / | |/ _` |/ _` |/ _ \ __/ __|
+#    \  /\  /  | | (_| | (_| |  __/ |_\__ \
+#     \/  \/   |_|\__,_|\__, |\___|\__|___/
+#                        __/ |             
+#                       |___/              
+
 widget_defaults = dict(
     font="sans",
     fontsize=12,
@@ -167,17 +218,48 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+				widget.Spacer(
+					length = 7,
+                    background = c_frappe.get("bg"),
+                    
+				),
+
+                left_half_circle(c_frappe.get("red"), c_frappe.get("bg")),
                 widget.GroupBox(
-					highlight_color = ["#8839ef","#8839ef"],
-					background = "#bf616a",
-					inactive = "#bf616a",
+					highlight_color = c_frappe.get("pink"), #["#8839ef","#8839ef"]
+					background = c_frappe.get("red"), #bf616a
+                    inactive = c_frappe.get("pink"),
+                    active = c_frappe.get("bg"),
 					highlight_method = 'line',
+                    block_highlight_text_color=c_frappe.get("bg"),
 					disable_drag = True,
 				),
-                widget.Prompt(),
+
+                right_half_circle(c_frappe.get("red"), c_frappe.get("bg")),
+
+				widget.Spacer(
+					length = 7,
+                    background = c_frappe.get("bg")
+				),
+
+                left_half_circle(c_frappe.get("yellow"), c_frappe.get("bg")),
+
+                widget.CurrentLayout(
+                    background=c_frappe.get("yellow"),
+                    foreground=c_frappe.get("bg"),
+                    font = "bold",
+                    ),
+                
+                right_half_circle(c_frappe.get("yellow"), c_frappe.get("bg")),
+
+				widget.Spacer(
+					length = 7,
+                    background = c_frappe.get("bg")
+				),
+                #widget.Prompt(),
                 widget.WindowName(
-					background = "#2e3440",
-					foreground = "#b4befe",
+					background = c_frappe.get("bg"), #"#2e3440"
+					foreground = c_frappe.get("fg"), #"#b4befe"
 				),
                 widget.Chord(
                     chords_colors={
@@ -189,23 +271,49 @@ screens = [
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
-				widget.Memory(
-					background = "#7287fd",
-				),
-				widget.Spacer(
-					length = 2,
-				),
+
                 widget.Systray(
-					background = "#a3be8c",
-					),
+                    background = c_frappe.get("bg"), #a3be8c
+                    ),
+
 				widget.Spacer(
-					length = 2,
+					length = 7,
+                    background = c_frappe.get("bg")
 				),
-                #widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-				widget.Clock(
-					background = "#b48ead",
-					format="%Y-%m-%d %a %I:%M %p"),
-				widget.CurrentLayoutIcon(),
+
+                left_half_circle(c_frappe.get("blue"), c_frappe.get("bg")),
+                widget.Memory(
+                    format=' {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}',
+                    background=c_frappe.get("blue"),
+                    foreground=c_frappe.get("bg"),
+                    ),
+
+                right_half_circle(c_frappe.get("blue"), c_frappe.get("bg")),
+
+                #left_half_circle(c_frappe.get("teal"), c_frappe.get("bg")),
+
+
+                #right_half_circle(c_frappe.get("teal"), c_frappe.get("bg")),
+
+				widget.Spacer(
+					length = 7,
+                    background = c_frappe.get("bg")
+				),
+
+                left_half_circle(c_frappe.get("green"), c_frappe.get("bg")),
+
+                widget.Clock(
+                    background = c_frappe.get("green"), #b48ead
+                    foreground = c_frappe.get("bg"),
+                    format="🕑 %Y-%m-%d %a %I:%M %p"
+                ),
+
+                right_half_circle(c_frappe.get("green"), c_frappe.get("bg")),
+
+				widget.Spacer(
+					length = 7,
+                    background = c_frappe.get("bg")
+				),
                 #widget.QuickExit(),
             ],
             24,
@@ -224,7 +332,7 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
-follow_mouse_focus = True
+follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
@@ -246,9 +354,15 @@ reconfigure_screens = True
 
 #--------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------
-# My changes
-#--------------------------------------------------------------------------------------
-# Autostart
+
+#                _            _             _   
+#     /\        | |          | |           | |  
+#    /  \  _   _| |_ ___  ___| |_ __ _ _ __| |_ 
+#   / /\ \| | | | __/ _ \/ __| __/ _` | '__| __|
+#  / ____ \ |_| | || (_) \__ \ || (_| | |  | |_ 
+# /_/    \_\__,_|\__\___/|___/\__\__,_|_|   \__|
+                                               
+
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
