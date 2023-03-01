@@ -1,5 +1,5 @@
 catppuccin_frappe = {
-        'bg' : "#51576d",
+        'bg' : "#51576d", #51576d
         'fg' : "#b5bfe2",
         'blue' : "#8caaee",
         'lavender' : "#babbf1",
@@ -15,4 +15,5 @@ catppuccin_frappe = {
         'pink' : "#f4b8e4",
         'flamingo' : "#eebebe",
         'rosewater' : "#f2d5cf",
+        'window' : "#292c3c", #7287fd #000015
         }

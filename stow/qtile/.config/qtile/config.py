@@ -35,14 +35,14 @@ import os
 import subprocess
 from libqtile import hook
 from colors import catppuccin_frappe as c_frappe
-from unicodes import left_half_circle, right_arrow, left_arrow, right_half_circle
+from unicodes import lower_left_triangle
 #-----------------------------------------------------------------------------------
 
 mod = "mod4"
 terminal = guess_terminal()
 
-myLauncher = "rofi -show run"
-myFileBrowser = "thunar"
+myLauncher = "rofi -show drun"
+myFileBrowser = "pcmanfm"
 myBrowser = "firefox"
 
 #  _  __          _     _           _ _                 
@@ -218,13 +218,7 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-				widget.Spacer(
-					length = 7,
-                    background = c_frappe.get("bg"),
-                    
-				),
 
-                left_half_circle(c_frappe.get("red"), c_frappe.get("bg")),
                 widget.GroupBox(
 					highlight_color = c_frappe.get("pink"), #["#8839ef","#8839ef"]
 					background = c_frappe.get("red"), #bf616a
@@ -235,14 +229,10 @@ screens = [
 					disable_drag = True,
 				),
 
-                right_half_circle(c_frappe.get("red"), c_frappe.get("bg")),
 
-				widget.Spacer(
-					length = 7,
-                    background = c_frappe.get("bg")
-				),
 
-                left_half_circle(c_frappe.get("yellow"), c_frappe.get("bg")),
+                lower_left_triangle(c_frappe.get("red"), c_frappe.get("yellow")),
+
 
                 widget.CurrentLayout(
                     background=c_frappe.get("yellow"),
@@ -250,16 +240,18 @@ screens = [
                     font = "bold",
                     ),
                 
-                right_half_circle(c_frappe.get("yellow"), c_frappe.get("bg")),
+
+                lower_left_triangle(c_frappe.get("yellow"), c_frappe.get("window")),
 
 				widget.Spacer(
 					length = 7,
-                    background = c_frappe.get("bg")
+                    background = c_frappe.get("window")
 				),
                 #widget.Prompt(),
                 widget.WindowName(
-					background = c_frappe.get("bg"), #"#2e3440"
+					background = c_frappe.get("window"), #"#2e3440"
 					foreground = c_frappe.get("fg"), #"#b4befe"
+                    font = "italic",
 				),
                 widget.Chord(
                     chords_colors={
@@ -273,56 +265,31 @@ screens = [
                 # widget.StatusNotifier(),
 
 
-                left_half_circle(c_frappe.get("teal"), c_frappe.get("bg")),
+                lower_left_triangle(c_frappe.get("window"), c_frappe.get("blue")),
 
-                widget.Systray(
-                    background = c_frappe.get("teal"), #a3be8c
-                    ),
-
-                right_half_circle(c_frappe.get("teal"), c_frappe.get("bg")),
-
-
-				widget.Spacer(
-					length = 7,
-                    background = c_frappe.get("bg")
-				),
-
-                left_half_circle(c_frappe.get("blue"), c_frappe.get("bg")),
                 widget.Memory(
                     format=' {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}',
                     background=c_frappe.get("blue"),
                     foreground=c_frappe.get("bg"),
                     ),
 
-                right_half_circle(c_frappe.get("blue"), c_frappe.get("bg")),
+                lower_left_triangle(c_frappe.get("blue"), c_frappe.get("teal")),
 
-                #left_half_circle(c_frappe.get("teal"), c_frappe.get("bg")),
+                widget.Systray(
+                    background = c_frappe.get("teal"), #a3be8c
+                    ),
 
 
-                #right_half_circle(c_frappe.get("teal"), c_frappe.get("bg")),
-
-				widget.Spacer(
-					length = 7,
-                    background = c_frappe.get("bg")
-				),
-
-                left_half_circle(c_frappe.get("green"), c_frappe.get("bg")),
+                lower_left_triangle(c_frappe.get("teal"), c_frappe.get("green")),
 
                 widget.Clock(
                     background = c_frappe.get("green"), #b48ead
                     foreground = c_frappe.get("bg"),
                     format="🕑 %Y-%m-%d %a %I:%M %p"
                 ),
-
-                right_half_circle(c_frappe.get("green"), c_frappe.get("bg")),
-
-				widget.Spacer(
-					length = 7,
-                    background = c_frappe.get("bg")
-				),
                 #widget.QuickExit(),
             ],
-            24,
+            18, # 24 default
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
