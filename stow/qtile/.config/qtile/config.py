@@ -272,9 +272,15 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
 
+
+                left_half_circle(c_frappe.get("teal"), c_frappe.get("bg")),
+
                 widget.Systray(
-                    background = c_frappe.get("bg"), #a3be8c
+                    background = c_frappe.get("teal"), #a3be8c
                     ),
+
+                right_half_circle(c_frappe.get("teal"), c_frappe.get("bg")),
+
 
 				widget.Spacer(
 					length = 7,
