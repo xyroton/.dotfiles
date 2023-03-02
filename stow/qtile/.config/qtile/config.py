@@ -35,7 +35,7 @@ import os
 import subprocess
 from libqtile import hook
 from colors import catppuccin_frappe as c_frappe
-from unicodes import lower_left_triangle
+from unicodes import lower_left_triangle, left_arrow, right_arrow
 #-----------------------------------------------------------------------------------
 
 mod = "mod4"
@@ -44,6 +44,7 @@ terminal = guess_terminal()
 myLauncher = "rofi -show drun"
 myFileBrowser = "pcmanfm"
 myBrowser = "firefox"
+myPowerMenu = "rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu"
 
 #  _  __          _     _           _ _                 
 # | |/ /         | |   (_)         | (_)                
@@ -106,6 +107,10 @@ keys = [
     Key([mod], "b", 
 		lazy.spawn(myBrowser), 
 		desc="Launches Firefox"),
+
+    Key([mod, "control"], "x", 
+		lazy.spawn(myPowerMenu), 
+		desc="Launches rofi-power-menu"),
 
     #Key([], "XF86AudioRaiseVolume", lazy.spwan("pactl -- set-sink-volume 0 +10%"), desc="Increase Vol."),
     #Key([], "XF86AudioRaiseVolume", lazy.spwan("pactl -- set-sink-volume 0 -10%"), desc="Decrease Vol."),
@@ -222,26 +227,22 @@ screens = [
                 widget.GroupBox(
 					highlight_color = c_frappe.get("pink"), #["#8839ef","#8839ef"]
 					background = c_frappe.get("red"), #bf616a
-                    inactive = c_frappe.get("pink"),
-                    active = c_frappe.get("bg"),
+                    inactive = c_frappe.get("bg"),
+                    active = c_frappe.get("dark_red"),
 					highlight_method = 'line',
                     block_highlight_text_color=c_frappe.get("bg"),
 					disable_drag = True,
 				),
 
-
-
-                lower_left_triangle(c_frappe.get("red"), c_frappe.get("yellow")),
-
+                left_arrow(c_frappe.get("red"), c_frappe.get("yellow")),
 
                 widget.CurrentLayout(
                     background=c_frappe.get("yellow"),
                     foreground=c_frappe.get("bg"),
                     font = "bold",
                     ),
-                
 
-                lower_left_triangle(c_frappe.get("yellow"), c_frappe.get("window")),
+                left_arrow(c_frappe.get("yellow"), c_frappe.get("window")),
 
 				widget.Spacer(
 					length = 7,
@@ -264,23 +265,21 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
 
-
-                lower_left_triangle(c_frappe.get("window"), c_frappe.get("blue")),
+                left_arrow(c_frappe.get("window"), c_frappe.get("lavender")),
 
                 widget.Memory(
                     format=' {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}',
-                    background=c_frappe.get("blue"),
+                    background=c_frappe.get("lavender"),
                     foreground=c_frappe.get("bg"),
                     ),
 
-                lower_left_triangle(c_frappe.get("blue"), c_frappe.get("teal")),
+                left_arrow(c_frappe.get("lavender"), c_frappe.get("blue")),
 
                 widget.Systray(
-                    background = c_frappe.get("teal"), #a3be8c
+                    background = c_frappe.get("blue"), #a3be8c
                     ),
-
-
-                lower_left_triangle(c_frappe.get("teal"), c_frappe.get("green")),
+        
+                left_arrow(c_frappe.get("blue"), c_frappe.get("green")),
 
                 widget.Clock(
                     background = c_frappe.get("green"), #b48ead
