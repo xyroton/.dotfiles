@@ -13,13 +13,7 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-	use ({ 
-		"catppuccin/nvim", 
-		as = "catppuccin",
-		confif = function()
-			vim.cmd('colorscheme catppuccin')
-		end
-	})
+    use { "catppuccin/nvim", as = "catppuccin" }
 
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
