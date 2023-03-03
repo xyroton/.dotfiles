@@ -1,8 +1,8 @@
 #!/bin/sh
 
 redshift-gtk &
+picom &
 nm-applet &
 volumeicon &
-xfce4-power-manager &
 pamac-tray &
 nitrogen --restore &

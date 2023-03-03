@@ -38,13 +38,15 @@ from colors import catppuccin_frappe as c_frappe
 from unicodes import lower_left_triangle, left_arrow, right_arrow
 #-----------------------------------------------------------------------------------
 
-mod = "mod4"
+#mod = "mod4"
+mod = "mod1"
 terminal = guess_terminal()
 
 myLauncher = "rofi -show drun"
 myFileBrowser = "pcmanfm"
 myBrowser = "firefox"
 myPowerMenu = "rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu"
+myTerminal = "kitty"
 
 #  _  __          _     _           _ _                 
 # | |/ /         | |   (_)         | (_)                
@@ -87,7 +89,8 @@ keys = [
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    #Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
@@ -99,6 +102,10 @@ keys = [
     Key([mod], "r", 
 		lazy.spawn(myLauncher), 
 		desc="Launches Rofi"),
+
+    Key([mod], "Return",
+         lazy.spawn(myTerminal), 
+        desc="Launch terminal"),
 
     Key([mod], "e", 
 		lazy.spawn(myFileBrowser), 
@@ -213,7 +220,8 @@ layouts = [
 #                       |___/              
 
 widget_defaults = dict(
-    font="sans",
+    #font="sans",
+    font="JetBrains Mono",
     fontsize=12,
     padding=3,
 )
