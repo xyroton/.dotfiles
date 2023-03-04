@@ -5,13 +5,13 @@ end
 
 toggleterm.setup {
   size = 20,
-  open_mapping = [[<c-w>]],
+  open_mapping = [[<leader>w]],
   hide_numbers = true,
   shade_filetypes = {},
   shade_terminals = true,
   shading_factor = 2,
   start_in_insert = true,
-  insert_mappings = true,
+  insert_mappings = false,
   persist_size = true,
   direction = "horizontal",
   close_on_exit = true,
