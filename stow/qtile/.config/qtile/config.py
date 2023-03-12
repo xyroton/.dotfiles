@@ -34,8 +34,6 @@ from libqtile.utils import guess_terminal
 import os
 import subprocess
 from libqtile import hook
-from colors import catppuccin_frappe as c_frappe
-from unicodes import lower_left_triangle, left_arrow, right_arrow
 #-----------------------------------------------------------------------------------
 
 #mod = "mod4"
@@ -136,13 +134,13 @@ keys = [
 #groups = [Group(i) for i in "123456"]
 
 groups = [
-        Group("1", label="一"),
-        Group("2", label="二"),
-        Group("3", label="三"),
-        Group("4", label="四"),
-        Group("5", label="五"),
-        Group("6", label="六"),
-        Group("7", label="七"),
+        Group("1", label=""),
+        Group("2", label=""),
+        Group("3", label=""),
+        Group("4", label="󰈄"),
+        Group("5", label=""),
+        Group("6", label="󰉔"),
+        Group("7", label=""),
         ]
 
 
@@ -219,6 +217,14 @@ layouts = [
 #                        __/ |             
 #                       |___/              
 
+
+color = {
+    'gray' : '#88c0d0',
+    'dark_gray' : '3B4252',
+    'black' : '#000000',
+    'pink' : '#f4b8e4',
+    }
+
 widget_defaults = dict(
     #font="sans",
     font="JetBrains Mono",
@@ -233,33 +239,48 @@ screens = [
             [
 
                 widget.GroupBox(
-					highlight_color = c_frappe.get("pink"), #["#8839ef","#8839ef"]
-					background = c_frappe.get("red"), #bf616a
-                    inactive = c_frappe.get("bg"),
-                    active = c_frappe.get("dark_red"),
+                    fontsize=22,
+					highlight_color = color.get("pink"),
+					background = color.get("black"),
+                    inactive = color.get("dark_gray"),
+                    active = color.get("gray"),
 					highlight_method = 'line',
-                    block_highlight_text_color=c_frappe.get("bg"),
+                    block_highlight_text_color=color.get("dark_gray"),
 					disable_drag = True,
 				),
 
-                left_arrow(c_frappe.get("red"), c_frappe.get("yellow")),
+                widget.TextBox(
+                    fmt="[",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
 
                 widget.CurrentLayout(
-                    background=c_frappe.get("yellow"),
-                    foreground=c_frappe.get("bg"),
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
                     font = "bold",
                     ),
 
-                left_arrow(c_frappe.get("yellow"), c_frappe.get("window")),
+                widget.TextBox(
+                    fmt="]",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+                widget.TextBox(
+                    fmt="→",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
 
 				widget.Spacer(
 					length = 7,
-                    background = c_frappe.get("window")
+                    background = color.get("black"),
 				),
                 #widget.Prompt(),
                 widget.WindowName(
-					background = c_frappe.get("window"), #"#2e3440"
-					foreground = c_frappe.get("fg"), #"#b4befe"
+					background = color.get("black"),
+					foreground = color.get("gray"),
                     font = "italic",
 				),
                 widget.Chord(
@@ -273,27 +294,126 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
 
-                left_arrow(c_frappe.get("window"), c_frappe.get("lavender")),
+
+                widget.TextBox(
+                    fmt="[",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+                widget.TextBox(
+                    fmt="󰻠",
+                    fontsize=27,
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+                widget.CPUGraph(
+                    background = color.get("black"),
+                    ),
+
+                widget.TextBox(
+                    fmt="]",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+
+                widget.TextBox(
+                    fmt="[",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+                widget.TextBox(
+                    fmt="󰍛",
+                    fontsize=27,
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
 
                 widget.Memory(
-                    format=' {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}',
-                    background=c_frappe.get("lavender"),
-                    foreground=c_frappe.get("bg"),
+                    format='{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}',
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
                     ),
 
-                left_arrow(c_frappe.get("lavender"), c_frappe.get("blue")),
-
-                widget.Systray(
-                    background = c_frappe.get("blue"), #a3be8c
+                widget.TextBox(
+                    fmt="]",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
                     ),
-        
-                left_arrow(c_frappe.get("blue"), c_frappe.get("green")),
+
+
+                widget.TextBox(
+                    fmt="[",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+                widget.TextBox(
+                    fmt="",
+                    fontsize=22,
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+                widget.Battery(
+                    background = color.get("black"),
+                    foreground = color.get("gray"),
+                    format = '{percent:2.0%}'
+                    ),
+
+                widget.TextBox(
+                    fmt="]",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+
+                widget.TextBox(
+                    fmt="[",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+                widget.TextBox(
+                    fmt="󰃰",
+                    fontsize=22,
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
 
                 widget.Clock(
-                    background = c_frappe.get("green"), #b48ead
-                    foreground = c_frappe.get("bg"),
-                    format="🕑 %Y-%m-%d %a %I:%M %p"
+                    background = color.get("black"),
+                    foreground = color.get("gray"),
+                    format="%Y-%m-%d %a %I:%M %p"
                 ),
+        
+                widget.TextBox(
+                    fmt="]",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+
+                widget.TextBox(
+                    fmt="[",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+                widget.Systray(
+                    background = color.get("black"),
+                    ),
+
+                widget.TextBox(
+                    fmt="]",
+                    background=color.get("black"),
+                    foreground=color.get("gray"),
+                    ),
+
+
                 #widget.QuickExit(),
             ],
             18, # 24 default
