@@ -1,4 +1,4 @@
-# My dotfiles for my Linux systems
+# .dotfiles 
 
 ### GNU Stow
 To manage my dotfiles I use GNU Stow. 
