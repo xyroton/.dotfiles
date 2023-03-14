@@ -45,6 +45,7 @@ myFileBrowser = "pcmanfm"
 myBrowser = "firefox"
 myPowerMenu = "rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu"
 myTerminal = "kitty"
+myScreenshot = "spectacle"
 
 #  _  __          _     _           _ _                 
 # | |/ /         | |   (_)         | (_)                
@@ -117,6 +118,9 @@ keys = [
 		lazy.spawn(myPowerMenu), 
 		desc="Launches rofi-power-menu"),
 
+    Key([mod], "s", 
+		lazy.spawn(myScreenshot), 
+		desc="Launches spectacle"),
     #Key([], "XF86AudioRaiseVolume", lazy.spwan("pactl -- set-sink-volume 0 +10%"), desc="Increase Vol."),
     #Key([], "XF86AudioRaiseVolume", lazy.spwan("pactl -- set-sink-volume 0 -10%"), desc="Decrease Vol."),
 ]
