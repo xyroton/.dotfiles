@@ -1,5 +1,5 @@
 # .dotfiles 
 
 ### GNU Stow
-To manage my dotfiles I use GNU Stow. 
-It is a nice piece of software that removes the hassle from the user having to set his symlinks manually.
+I manage my dotfiles with the help of GNU Stow. 
+It is a nice piece of software that removes the hassle from the user having to set symlinks manually.
